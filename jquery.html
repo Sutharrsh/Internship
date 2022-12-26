@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>jquery</title>
+</head>
+<body>
+    <img src="https://www.w3schools.com//images/w3jquery.gif" alt="jQuery" width="100" height="140">
+
+<p>Click the button to insert text after the image.</p>
+
+<button id="btn">Insert after</button>
+    <p class="test">
+        Flexbox is relatively new, but it enjoys excellent browser support today (nearly 83% of browsers support Flexbox). Flexbox Layout is used for small application components, whereas CSS Grid Layout Module is aimed to handle the large scale layouts
+    </p>
+    <button>Show</button>
+    <button id="hide">hide</button>
+    <button class="slide">slide both
+    </button>
+    <button class="alert">alert
+    </button>
+    
+<h2>Filterable Table</h2>
+<p>Type something in the input field to search the table for first names, last names or emails:</p>  
+<input id="myInput" type="text" placeholder="Search..">
+<br><br>
+
+<table>
+  <thead>
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Email</th>
+  </tr>
+  </thead>
+  <tbody id="myTable">
+  <tr>
+    <td>John</td>
+    <td>Doe</td>
+    <td>john@example.com</td>
+  </tr>
+  <tr>
+    <td>Mary</td>
+    <td>Moe</td>
+    <td>mary@mail.com</td>
+  </tr>
+  <tr>
+    <td>July</td>
+    <td>Dooley</td>
+    <td>july@greatstuff.com</td>
+  </tr>
+  <tr>
+    <td>Anja</td>
+    <td>Ravendale</td>
+    <td>a_r@test.com</td>
+  </tr>
+  </tbody>
+</table>
+  
+<p>Note that we start the search in tbody, to prevent filtering the table headers.</p>
+
+</body>
+</html>
+<script>
+   $(document).ready(function(){
+
+   $('button').click(function(){
+    $('p').show(1000);
+    
+});
+    $('#hide').on("click",function(){
+    $('p').hide(5000,function(){
+        alert("this is hidden now!")
+    });
+});
+$('.slide').click(function(){
+    $('p').slideToggle();
+});
+$('p').click(function(){
+    $(this).animate({
+        opacity:'0.5',
+        left:'1rem',
+        height:100,
+        width:100,
+        background: '#000'
+        },'slow');
+});
+$('.alert').click(function(){
+alert("Test:"+$('p').width()+":height:"+$('p').height());
+});
+
+$('#btn').click(function(){
+  var txt1 = "<b>I </b>";                    // Create element with HTML 
+  var txt2 = $("<i></i>").text("love ");     // Create with jQuery
+  var txt3 = document.createElement("b");    // Create with DOM
+  txt3.innerHTML = "jQuery!";
+  $("img").after(txt1, txt2, txt3);          // Insert new elements after <img>
+});
+$("button").click(function(){
+  var txt = "";
+  txt += "Document width/height: " + $(document).width();
+  txt += "x" + $(document).height() + "\n";
+  txt += "Window width/height: " + $(window).width();
+  txt += "x" + $(window).height();
+  alert(txt);
+});
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+});
+</script>
+<style>
+    p{
+        
+    text-align: center;
+    padding: 3rem 33rem;
+    width: 29%;
+    background: antiquewhite;
+    display: flex;
+
+    }
+    *{
+        overflow-x: hidden;
+    }
+</style>
